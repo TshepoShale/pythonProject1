@@ -45,7 +45,6 @@ def calculate_loan_payment(loan_amount, interest_rate, months):
     monthly_payment = (loan_amount * monthly_interest_rate) / (1 - (1 + monthly_interest_rate) ** -months)
     return monthly_payment
 
-
 while True:
     print(welcome_text)
     print("Options:")
@@ -72,6 +71,18 @@ while True:
         loan_duration = get_loan_duration()
         monthly_payment = calculate_loan_payment(loan_amount, 11.75, loan_duration)
         print(f"Your monthly payment for the student loan will be: ZAR: {monthly_payment:.2f}")
+    elif choice == "4":
+         option = input("Which option would you like to choose?: 'Simple' or 'Compound' interest ")
+         if option.lower() == "simple":
+            principal = float(input("Enter the principal amount: ZAR "))
+            interest_rate_s = float(input("Enter the annual interest rate: "))
+            time_period = float(input("Enter the time period (in months): "))
+            amount = principal * (interest_rate_s / 100) * time_period
+            print(f"The simple interest amount will be: ZAR {amount:.2f}")
+        # elif choice.lower() == "compound":
+    #     #     print("you chose compound")
+    # else:
+    #     ("Please enter the correct option, either 'Simple' or 'Compound' ")
     elif choice == "5":
         print("Thanks for using BugBank Investment Calculator. Keep well.")
         break
