@@ -74,11 +74,14 @@ while True:
     elif choice == "4":
          option = input("Which option would you like to choose?: 'Simple' or 'Compound' interest ")
          if option.lower() == "simple":
-            principal = float(input("Enter the principal amount: ZAR "))
-            interest_rate_s = float(input("Enter the annual interest rate: "))
-            time_period = float(input("Enter the time period (in months): "))
-            amount = principal * (interest_rate_s / 100) * time_period
-            print(f"The simple interest amount will be: ZAR {amount:.2f}")
+            try:
+                principal = float(input("Enter the principal amount: ZAR "))
+                interest_rate_s = float(input("Enter the annual interest rate: "))
+                time_period = float(input("Enter the time period (in months): "))
+                amount = principal + (principal * (interest_rate_s / 100) * time_period)
+                print(f"The simple interest amount will be: ZAR {amount:.2f}")
+            except ValueError:
+                print("Please enter the correct option, either 'Simple' or 'Compound'")
         # elif choice.lower() == "compound":
     #     #     print("you chose compound")
     # else:
