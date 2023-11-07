@@ -53,6 +53,7 @@ while True:
     print("2. Personal Loan (28.25% interest)")
     print("3. Student Loan (11.75% interest)")
     print("4. Investment Calculator")
+    print("5. Exit")
 
     choice = input("Enter your choice: ")
 
