@@ -8,7 +8,7 @@ welcome_text = """
 ██████╔╝╚██████╔╝╚██████╔╝    ██████╔╝██║  ██║██║ ╚████║██║  ██╗
 ╚═════╝  ╚═════╝  ╚═════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
 """
-
+#validation for user input to check for numerical values entered
 def get_float_input(prompt, min_value):
     while True:
         try:
@@ -19,7 +19,7 @@ def get_float_input(prompt, min_value):
                 return value
         except ValueError:
             print("Invalid input. Please enter a numerical value.")
-
+#getting loan amount from user
 def get_loan_amount(min_amount):
     return get_float_input(f"Enter loan amount in ZAR (minimum {min_amount}): ", min_amount)
 
@@ -33,14 +33,14 @@ def get_loan_duration():
                 print("Loan duration must be between 60 and 360 months. (5 years until 30 years.)")
         except ValueError:
             print("Invalid input. Please enter a numerical value.")
-
+#simple interest calculation
 def calculate_simple_interest(principal, interest_rate, time_period):
     return principal + (principal * (interest_rate / 100) * time_period)
-
+#compound interest calculation
 def calculate_compound_interest(principal, interest_rate, time_period):
     amount = principal * (math.pow((1 + interest_rate / 100), time_period))
     return amount
-
+#menu options
 while True:
     print(welcome_text)
     print("Options:")
@@ -53,24 +53,24 @@ while True:
     choice = input("Enter your choice: ")
 
     if choice == "1":
-        loan_amount = get_loan_amount(500000)
+        loan_amount = get_loan_amount(500000) #minimum amount for home loan
         loan_duration = get_loan_duration()
         monthly_payment = calculate_simple_interest(loan_amount, 11.75, loan_duration)
         print(f"Your monthly payment for the home loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "2":
-        loan_amount = get_loan_amount(800000)
+        loan_amount = get_loan_amount(800000) #minimum amount for personal loan
         loan_duration = get_loan_duration()
         monthly_payment = calculate_simple_interest(loan_amount, 28.25, loan_duration)
         print(f"Your monthly payment for the personal loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "3":
-        loan_amount = get_loan_amount(50000)
+        loan_amount = get_loan_amount(50000) #minimum amount for student loan
         loan_duration = get_loan_duration()
         monthly_payment = calculate_simple_interest(loan_amount, 11.75, loan_duration)
         print(f"Your monthly payment for the student loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "4":
         while True:
-            option = input("Which option would you like to choose? 'Simple' or 'Compound': ").lower()
-            if option == "simple":
+            option = input("Which option would you like to choose? 'Simple' or 'Compound': ").lower() #takes uppercase letters to lowercase letters
+            if option == "simple": #user inputs for simple interest
                 try:
                     principal = float(input("Enter the principal amount: ZAR "))
                     interest_rate = float(input("Enter the annual interest rate: "))
@@ -78,9 +78,9 @@ while True:
                     simple_interest = calculate_simple_interest(principal, interest_rate, time_period)
                     print(f"The simple interest amount will be: ZAR {simple_interest:.2f}")
                     break
-                except ValueError:
+                except ValueError: #handles value errors from users
                     print("Invalid input. Please enter numeric values.")
-            elif option == "compound":
+            elif option == "compound":  #user inputs for compound interest
                 try:
                     principal = float(input("Enter the principal amount: ZAR "))
                     interest_rate = float(input("Enter the annual interest rate: "))
