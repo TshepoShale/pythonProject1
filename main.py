@@ -40,7 +40,7 @@ def get_loan_duration():
             print("Invalid input. Please enter a numerical value.")
 
 
-def calculate_loan_payment(loan_amount, interest_rate, months):
+def calculate_loan_payment(loan_amount, in4terest_rate, months):
     monthly_interest_rate = interest_rate / 100 / 12
     monthly_payment = (loan_amount * monthly_interest_rate) / (1 - (1 + monthly_interest_rate) ** -months)
     return monthly_payment
@@ -78,8 +78,8 @@ while True:
                 principal = float(input("Enter the principal amount: ZAR "))
                 interest_rate_s = float(input("Enter the annual interest rate: "))
                 time_period = float(input("Enter the time period (in months): "))
-                amount = principal + (principal * (interest_rate_s / 100) * time_period)
-                print(f"The simple interest amount will be: ZAR {amount:.2f}")
+                simple_interest = principal + (principal * (interest_rate_s / 100) * time_period)
+                print(f"The simple interest amount will be: ZAR {simple_interest:.2f}")
             except ValueError:
                 print("Please enter the correct option, either 'Simple' or 'Compound'")
         # elif choice.lower() == "compound":
