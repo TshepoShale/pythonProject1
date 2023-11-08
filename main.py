@@ -1,4 +1,5 @@
-import math #math calculation module
+#math calculation module
+import math
 
 welcome_text = """ 
 ██████╗ ██╗   ██╗ ██████╗     ██████╗  █████╗ ███╗   ██╗██╗  ██╗
@@ -40,12 +41,17 @@ def calculate_simple_interest(principal, interest_rate, time_period):
 def calculate_compound_interest(principal, interest_rate, time_period):
     amount = principal * (math.pow((1 + interest_rate / 100), time_period))
     return amount
+def calculate_simple_interest(principal, annual_interest_rate, loan_duration):
+    monthly_interest_rate = annual_interest_rate / (12 * 100)
+    total_payments = loan_duration
+    monthly_payment = principal * (monthly_interest_rate * (1 + monthly_interest_rate) ** total_payments) / ((1 + monthly_interest_rate) ** total_payments - 1)
+    return monthly_payment
 
 while True:
     print(welcome_text)
     print("Options:")
     print("1. Bond Repayment (11.75% interest)")
-    print("2. Personal Loan (28.25% interest)")
+    print("2. Personal Loan (27.5% interest)")
     print("3. Student Loan (11.75% interest)")
     print("4. Investment Calculator")
     print("5. Exit")
@@ -61,6 +67,7 @@ while True:
         loan_amount = get_loan_amount(800000)
         loan_duration = get_loan_duration()
         monthly_payment = calculate_simple_interest(loan_amount, 28.25, loan_duration)
+        monthly_payment = calculate_simple_interest(loan_amount, 27.50, loan_duration)
         print(f"Your monthly payment for the personal loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "3":
         loan_amount = get_loan_amount(50000)
@@ -92,6 +99,8 @@ while True:
                     print("Invalid input. Please enter numeric values.")
             else:
                 print("Invalid option. Please choose 'Simple' or 'Compound'.")
+        # (Same as before, no changes in this part of the code)
+        pass
     elif choice == "5":
         print("Thanks for using BugBank Investment Calculator. Keep well.")
         break
