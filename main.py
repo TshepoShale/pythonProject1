@@ -1,17 +1,13 @@
 import math
 
-welcome_text = """" 
-
+welcome_text = """ 
 ██████╗ ██╗   ██╗ ██████╗     ██████╗  █████╗ ███╗   ██╗██╗  ██╗
 ██╔══██╗██║   ██║██╔════╝     ██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝
 ██████╔╝██║   ██║██║  ███╗    ██████╔╝███████║██╔██╗ ██║█████╔╝ 
 ██╔══██╗██║   ██║██║   ██║    ██╔══██╗██╔══██║██║╚██╗██║██╔═██╗ 
 ██████╔╝╚██████╔╝╚██████╔╝    ██████╔╝██║  ██║██║ ╚████║██║  ██╗
 ╚═════╝  ╚═════╝  ╚═════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝
-
-
 """
-
 
 def get_float_input(prompt, min_value):
     while True:
@@ -24,16 +20,13 @@ def get_float_input(prompt, min_value):
         except ValueError:
             print("Invalid input. Please enter a numerical value.")
 
-
 def get_loan_amount(min_amount):
     return get_float_input(f"Enter loan amount in ZAR (minimum {min_amount}): ", min_amount)
-
 
 def get_loan_duration():
     while True:
         try:
-            months = int(input(
-                "Enter the number of months for the loan duration (Loan duration must be between 60 and 360 months.): "))
+            months = int(input("Enter the number of months for the loan duration (Loan duration must be between 60 and 360 months.): "))
             if 60 <= months <= 360:
                 return months
             else:
@@ -41,11 +34,12 @@ def get_loan_duration():
         except ValueError:
             print("Invalid input. Please enter a numerical value.")
 
+def calculate_simple_interest(principal, interest_rate, time_period):
+    return principal + (principal * (interest_rate / 100) * time_period)
 
-def calculate_loan_payment(loan_amount, in4terest_rate, months):
-    monthly_interest_rate = interest_rate / 100 / 12
-    monthly_payment = (loan_amount * monthly_interest_rate) / (1 - (1 + monthly_interest_rate) ** -months)
-    return monthly_payment
+def calculate_compound_interest(principal, interest_rate, time_period):
+    amount = principal * (math.pow((1 + interest_rate / 100), time_period))
+    return amount
 
 while True:
     print(welcome_text)
@@ -61,41 +55,45 @@ while True:
     if choice == "1":
         loan_amount = get_loan_amount(500000)
         loan_duration = get_loan_duration()
-        monthly_payment = calculate_loan_payment(loan_amount, 11.75, loan_duration)
-        print(f"Your monthly payment for the home loan will be: ZAR: {monthly_payment:.2f}")
+        monthly_payment = calculate_simple_interest(loan_amount, 11.75, loan_duration)
+        print(f"Your monthly payment for the home loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "2":
         loan_amount = get_loan_amount(800000)
         loan_duration = get_loan_duration()
-        monthly_payment = calculate_loan_payment(loan_amount, 28.25, loan_duration)
-        print(f"Your monthly payment for the personal loan will be: ZAR: {monthly_payment:.2f}")
+        monthly_payment = calculate_simple_interest(loan_amount, 28.25, loan_duration)
+        print(f"Your monthly payment for the personal loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "3":
         loan_amount = get_loan_amount(50000)
         loan_duration = get_loan_duration()
-        monthly_payment = calculate_loan_payment(loan_amount, 11.75, loan_duration)
-        print(f"Your monthly payment for the student loan will be: ZAR: {monthly_payment:.2f}")
+        monthly_payment = calculate_simple_interest(loan_amount, 11.75, loan_duration)
+        print(f"Your monthly payment for the student loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "4":
-         option = input("Which option would you like to choose?: 'Simple' or 'Compound' interest ")
-         if option.lower() == "simple":
-            try:
-                principal = float(input("Enter the principal amount: ZAR "))
-                interest_rate_s = float(input("Enter the annual interest rate: "))
-                time_period = float(input("Enter the time period (in months): "))
-                simple_interest = principal + (principal * (interest_rate_s / 100) * time_period)
-                print(f"The simple interest amount will be: ZAR {simple_interest:.2f}")
-            except ValueError:
-                print("Please enter the correct option, either 'Simple' or 'Compound'")
-         if option.lower() == "compound":
-             try: 
-                 principal = float(input("Enter the principal amount: ZAR "))
-                 rate = float(input("Enter the desired interest rate: "))
-                 time = float(input("Enter the time period (in years): "))
-                 Amount = principal * (math.pow((1 + rate / 100), time))
-                 CI = Amount - principal
-                 print("The compound interest is ZAR", Amount)
-             except ValueError:
-                print("Please enter the correct option, either 'Simple' or 'Compound'")
+        while True:
+            option = input("Which option would you like to choose? 'Simple' or 'Compound': ").lower()
+            if option == "simple":
+                try:
+                    principal = float(input("Enter the principal amount: ZAR "))
+                    interest_rate = float(input("Enter the annual interest rate: "))
+                    time_period = float(input("Enter the time period (in years): "))
+                    simple_interest = calculate_simple_interest(principal, interest_rate, time_period)
+                    print(f"The simple interest amount will be: ZAR {simple_interest:.2f}")
+                    break
+                except ValueError:
+                    print("Invalid input. Please enter numeric values.")
+            elif option == "compound":
+                try:
+                    principal = float(input("Enter the principal amount: ZAR "))
+                    interest_rate = float(input("Enter the annual interest rate: "))
+                    time_period = float(input("Enter the time period (in years): "))
+                    total_amount = calculate_compound_interest(principal, interest_rate, time_period)
+                    print(f"The total amount after compound interest will be: ZAR {total_amount:.2f}")
+                    break
+                except ValueError:
+                    print("Invalid input. Please enter numeric values.")
+            else:
+                print("Invalid option. Please choose 'Simple' or 'Compound'.")
     elif choice == "5":
         print("Thanks for using BugBank Investment Calculator. Keep well.")
         break
     else:
-        print("Invalid choice. Please enter 1, 2, 3,4 or 5.")
+        print("Invalid choice. Please enter 1, 2, 3, 4, or 5.")
