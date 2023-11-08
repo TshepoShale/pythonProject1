@@ -1,4 +1,4 @@
-import math
+import math #math calculation module
 
 welcome_text = """ 
 ██████╗ ██╗   ██╗ ██████╗     ██████╗  █████╗ ███╗   ██╗██╗  ██╗
@@ -27,7 +27,7 @@ def get_loan_duration():
     while True:
         try:
             months = int(input("Enter the number of months for the loan duration (Loan duration must be between 60 and 360 months.): "))
-            if 60 <= months <= 360:
+            if 60 <= months <= 360: # time period for loan duration at our bank.
                 return months
             else:
                 print("Loan duration must be between 60 and 360 months. (5 years until 30 years.)")
