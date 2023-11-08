@@ -1,3 +1,5 @@
+import math
+
 welcome_text = """" 
 
 ██████╗ ██╗   ██╗ ██████╗     ██████╗  █████╗ ███╗   ██╗██╗  ██╗
@@ -82,10 +84,16 @@ while True:
                 print(f"The simple interest amount will be: ZAR {simple_interest:.2f}")
             except ValueError:
                 print("Please enter the correct option, either 'Simple' or 'Compound'")
-        # elif choice.lower() == "compound":
-    #     #     print("you chose compound")
-    # else:
-    #     ("Please enter the correct option, either 'Simple' or 'Compound' ")
+         if option.lower() == "compound":
+             try: 
+                 principal = float(input("Enter the principal amount: ZAR "))
+                 rate = float(input("Enter the desired interest rate: "))
+                 time = float(input("Enter the time period (in years): "))
+                 Amount = principal * (math.pow((1 + rate / 100), time))
+                 CI = Amount - principal
+                 print("The compound interest is ZAR", Amount)
+             except ValueError:
+                print("Please enter the correct option, either 'Simple' or 'Compound'")
     elif choice == "5":
         print("Thanks for using BugBank Investment Calculator. Keep well.")
         break
