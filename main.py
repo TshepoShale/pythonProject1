@@ -103,7 +103,7 @@ while True:
                     print("Invalid input. Please enter numeric values.")
             else:
                 print("Invalid option. Please choose 'Simple' or 'Compound'.")
-        # (Same as before, no changes in this part of the code)
+        # option 5 is for exiting
         pass
     elif choice == "5":
         print("Thanks for using BugBank Investment Calculator. Keep well.")
