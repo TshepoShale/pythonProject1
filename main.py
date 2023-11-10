@@ -44,7 +44,7 @@ def calculate_simple_interest(principal, interest_rate, time_period):
 def calculate_compound_interest(principal, interest_rate, time_period):
     amount = principal * (math.pow((1 + interest_rate / 100), time_period))
     return amount
-def calculate_simple_interest(principal, annual_interest_rate, loan_duration):
+def calculate_simple_interestL(principal, annual_interest_rate, loan_duration):
     monthly_interest_rate = annual_interest_rate / (12 * 100)
     total_payments = loan_duration
     monthly_payment = principal * (monthly_interest_rate * (1 + monthly_interest_rate) ** total_payments) / ((1 + monthly_interest_rate) ** total_payments - 1)
@@ -65,18 +65,18 @@ while True:
     if choice == "1":
         loan_amount = get_loan_amount(500000) #minimum amount for home loan
         loan_duration = get_loan_duration()
-        monthly_payment = calculate_simple_interest(loan_amount, 11.75, loan_duration)
+        monthly_payment = calculate_simple_interestL(loan_amount, 11.75, loan_duration)
         print(f"Your monthly payment for the home loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "2":
         loan_amount = get_loan_amount(800000)  #minimum amount for personal loan
         loan_duration = get_loan_duration()
-        monthly_payment = calculate_simple_interest(loan_amount, 28.25, loan_duration)
-        monthly_payment = calculate_simple_interest(loan_amount, 27.50, loan_duration)
+        monthly_payment = calculate_simple_interestL(loan_amount, 28.25, loan_duration)
+        monthly_payment = calculate_simple_interestL(loan_amount, 27.50, loan_duration)
         print(f"Your monthly payment for the personal loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "3":
         loan_amount = get_loan_amount(50000)
         loan_duration = get_loan_duration()
-        monthly_payment = calculate_simple_interest(loan_amount, 11.75, loan_duration)
+        monthly_payment = calculate_simple_interestL(loan_amount, 11.75, loan_duration)
         print(f"Your monthly payment for the student loan will be: ZAR {monthly_payment:.2f}")
     elif choice == "4":
         while True:
