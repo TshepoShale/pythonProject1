@@ -74,7 +74,7 @@ while True:
         print(f"Your monthly payment for the home loan will be: ZAR {monthly_payment:.2f}")
 
     elif choice == "2":
-        loan_amount = get_loan_amount(800000)  # Minimum amount for personal loan
+        loan_amount = get_loan_amount(250000)  # Minimum amount for personal loan
         loan_duration = get_loan_duration()
         monthly_payment = calculate_simple_interest_loan(loan_amount, 27.50, loan_duration)
         print(f"Your monthly payment for the personal loan will be: ZAR {monthly_payment:.2f}")
